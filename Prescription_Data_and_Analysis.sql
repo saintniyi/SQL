@@ -84,7 +84,7 @@ group by PatientID, Drug
 --Write an SQL query that provides list of patient count, Drug and Location (In-Patient/Out-Patient) with same date range in question 2. 
 --Note: Individual PatientID should not be part of the result
 
---Solution 2
+--Solution 3
 /*****	Analytic Query showing Patient Count based on Drug prescription and Location	*****/
 select Sum(p.PatientCount) as PatientsCount, p.Drug, p.Location from
 (
