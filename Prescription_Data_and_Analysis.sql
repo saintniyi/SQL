@@ -65,6 +65,26 @@ and PatientID like 'A%' and Drug = 'X'
 --Write an SQL query that provides the list of patients broken by Drug and Location (In-Patient/Out-Patient) with same date range in question 1?
 
 --Solution 2
+/*****	Analytic Query showing Patient list based on Drug prescription and Location	*****/
+select PatientID, count(PatientID) as PatientCount, Drug, 
+case 
+when PatientID like 'A%' then 'In-Province'
+	else 'Out-Province'
+end as Location
+from Prescription
+where FilledDate between 'January 1, 2014' and 'August 17, 2014'
+group by PatientID, Drug
+
+
+
+--------------------------
+
+
+--Question 3:
+--Write an SQL query that provides list of patient count, Drug and Location (In-Patient/Out-Patient) with same date range in question 2. 
+--Note: Individual PatientID should not be part of the result
+
+--Solution 2
 /*****	Analytic Query showing Patient Count based on Drug prescription and Location	*****/
 select Sum(p.PatientCount) as PatientsCount, p.Drug, p.Location from
 (
@@ -79,3 +99,4 @@ select Sum(p.PatientCount) as PatientsCount, p.Drug, p.Location from
 ) p 
 group by p.drug, p.Location
 order by p.Drug, p.Location;
+
