@@ -68,8 +68,8 @@ and PatientID like 'A%' and Drug = 'X'
 /*****	Analytic Query showing Patient list based on Drug prescription and Location	*****/
 select PatientID, count(PatientID) as PatientCount, Drug, 
 case 
-when PatientID like 'A%' then 'In-Province'
-	else 'Out-Province'
+when PatientID like 'A%' then 'In-Patient'
+	else 'Out-Patient'
 end as Location
 from Prescription
 where FilledDate between 'January 1, 2014' and 'August 17, 2014'
@@ -90,8 +90,8 @@ select Sum(p.PatientCount) as PatientsCount, p.Drug, p.Location from
 (
 	select PatientID, count(PatientID) as PatientCount, Drug, 
 	case 
-	when PatientID like 'A%' then 'In-Province'
-		else 'Out-Province'
+	when PatientID like 'A%' then 'In-Patient'
+		else 'Out-Patient'
 	end as Location
 	from Prescription
 	where FilledDate between 'January 1, 2014' and 'August 17, 2014'
